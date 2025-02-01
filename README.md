@@ -27,5 +27,8 @@ cd nv_test
 2. 启动开发环境
 ```bash
 docker-compose -f docker-compose.dev.yml up -d
+```
+
+```bash
 docker-compose -f docker-compose.dev.yml down
 ```
