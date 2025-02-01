@@ -18,3 +18,15 @@ services:
       - ./start.sh:/start.sh  # 挂载自定义启动脚本
     user: "0"  # 根据 Dockerfile 使用非 root 用户运行
     entrypoint: /start.sh
+
+  selenium_chromium:
+    image: seleniarm/standalone-chromium:117.0
+    container_name: selenium_${NAME}
+    ports:
+      - "${SELENIUM_PORT_1}:4444"  # Selenium Grid 端口
+      - "${SELENIUM_PORT_2}:5900"  # VNC 端口
+      - "${SELENIUM_PORT_3}:7900"  # Selenium Grid WebSocket 端口
+    environment:
+      - SE_VNC_NO_PASSWORD=true
+    shm_size: 2g
+    restart: unless-stopped

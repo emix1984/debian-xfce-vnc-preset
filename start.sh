@@ -4,7 +4,7 @@
 apt update && apt install -y curl
 
 # 下载并执行配置脚本
-curl -fL -o Setup_DebianXfceVNC_PythonDev.sh https://github.com/emix1984/CustomizeServerEnvironment/raw/refs/heads/main/Setup_DebianXfceVNC_PythonDev.sh
+curl -fL -o Setup_DebianXfceVNC_PythonDev.sh https://raw.githubusercontent.com/emix1984/debian-xfce-vnc-preset/refs/heads/main/Setup_DebianXfceVNC_PythonDev.sh
 
 # 给下载的脚本赋予可执行权限
 chmod +x Setup_DebianXfceVNC_PythonDev.sh
