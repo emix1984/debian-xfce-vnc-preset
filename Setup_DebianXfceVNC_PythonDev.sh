@@ -37,7 +37,7 @@ function init_python_project() {
     # 检查requirements.txt是否存在
     if [ ! -f requirements.txt ]; then
         echo "requirements.txt 文件不存在，请确保该文件在当前目录下。"
-        exit 1
+        return 0  # 返回状态码0，表示成功跳过
     fi
 
     # 创建并激活虚拟环境
