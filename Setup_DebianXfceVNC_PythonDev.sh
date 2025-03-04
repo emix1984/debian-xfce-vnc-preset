@@ -72,7 +72,7 @@ function check_python_dev_environment() {
 function clean_system() {
     echo "**** 清理缓存和临时文件 ****"
     # 清理不再需要的软件包
-    && apt autoremove -y
+    apt autoremove -y
     # 清理APT缓存
     apt-get clean -y
     # 删除APT下载的包文件
