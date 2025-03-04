@@ -6,7 +6,7 @@
 # 定义函数模块
 function update_system_packages() {
     echo ">>> 1. 更新系统包管理清单"
-    apt update && apt upgrade -y && apt autoremove -y || { echo "更新系统包失败！"; exit 1; }
+    apt update && apt autoremove -y || { echo "更新系统包失败！"; exit 1; }
 }
 
 function install_common_packages() {
