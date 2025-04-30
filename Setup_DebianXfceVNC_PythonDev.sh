@@ -11,7 +11,7 @@ function update_system_packages() {
 
 function install_common_packages() {
     echo ">>> 2. 安装终端系统常用软件包"
-    apt-get install -y git curl nano tree unzip net-tools screen || { echo "安装常用软件包失败！"; exit 1; }
+    apt-get install -y git curl nano tree unzip net-tools screen gedit gdebi || { echo "安装常用软件包失败！"; exit 1; }
 }
 
 function install_python_dev_packages() {
@@ -24,7 +24,7 @@ function install_chromium_driver_and_desktop_packages() {
     case "$choice" in
         y|Y)
             echo ">>> Option. 安装chromium-driver开发包，系统桌面用软件包管理器，文本编辑器"
-            apt-get install -y chromium chromium-driver gedit gdebi || { echo "安装chromium-driver失败！"; exit 1; }
+            apt-get install -y chromium chromium-driver || { echo "安装chromium-driver失败！"; exit 1; }
             ;;
         *)
             echo ">>> 跳过 Option. 安装chromium-driver开发包，继续执行后续步骤..."
