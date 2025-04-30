@@ -14,12 +14,6 @@ install_python3() {
     apt install -y python3 python3-pip python3-venv
 }
 
-# 定义函数：更新 pip 到最新版本
-update_pip() {
-    echo "正在更新 pip 到最新版本..."
-    python3 -m pip install --upgrade pip
-}
-
 # 定义函数：创建虚拟环境并安装依赖
 setup_venv_and_install_requirements() {
     echo "正在创建虚拟环境..."
@@ -51,9 +45,6 @@ else
     install_dependencies
     install_python3
 fi
-
-# 更新系统中的 pip 到最新版本
-update_pip
 
 # 创建虚拟环境并安装 requirements.txt 中的库
 setup_venv_and_install_requirements
