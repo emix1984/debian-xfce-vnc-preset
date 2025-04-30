@@ -39,11 +39,15 @@ echo "开始设置 Python 环境..."
 # 检查是否已安装 Python 3
 if command -v python3 &> /dev/null; then
     echo "Python 3 已安装。"
-    echo "Python 3 的路径为：$(which python3)"
+    echo "Python 3 的默认路径为：$(which python3)"
+    echo "Python 3 的路径为：$(ls /usr/bin/python | grep python3)"
 else
     echo "Python 3 未安装，正在安装必要依赖和 Python 3..."
     install_dependencies
     install_python3
+    echo "Python 3 安装完毕。"
+    echo "Python 3 的默认路径为：$(which python3)"
+    echo "Python 3 的路径为：$(ls /usr/bin/python | grep python3)"
 fi
 
 # 创建虚拟环境并安装 requirements.txt 中的库
