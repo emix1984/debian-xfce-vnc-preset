@@ -3,15 +3,15 @@
 # 定义函数：安装必要的编译依赖
 install_dependencies() {
     echo "正在安装必要的编译依赖..."
-    sudo apt update
-    sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
+    apt update
+    apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
     libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget
 }
 
 # 定义函数：安装 Python 3.10
 install_python310() {
     echo "正在安装 Python 3.10..."
-    sudo apt install -y python3.10 python3.10-venv python3.10-pip
+    apt install -y python3.10 python3.10-venv python3.10-pip
 }
 
 # 定义函数：更新 pip 到最新版本
