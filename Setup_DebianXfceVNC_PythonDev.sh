@@ -70,6 +70,7 @@ function check_python_dev_environment() {
 
     echo "Python开发环境检查通过。"
     echo "Python 3 的路径为：$(which python3)"
+    echo "Python 3 的路径为：$(ls /usr/bin/python* | grep python3)"
 }
 
 function clean_system() {
