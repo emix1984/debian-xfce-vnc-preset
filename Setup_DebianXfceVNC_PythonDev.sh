@@ -16,7 +16,9 @@ function install_common_packages() {
 
 function install_python_dev_packages() {
     echo ">>> 3. 安装Python开发包"
-    apt-get install -y openssl build-essential libssl-dev libffi-dev python3 python3-dev python3-pip python3-venv || { echo "安装Python开发包失败！"; exit 1; }
+    echo "正在安装必要的编译依赖..."
+    apt install -y openssl build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget
+    apt-get install -y python3 python3-dev python3-pip python3-venv || { echo "安装Python开发包失败！"; exit 1; }
 }
 
 function install_chromium_driver_and_desktop_packages() {
@@ -67,6 +69,7 @@ function check_python_dev_environment() {
     fi
 
     echo "Python开发环境检查通过。"
+    echo "Python 3 的路径为：$(which python3)"
 }
 
 function clean_system() {
