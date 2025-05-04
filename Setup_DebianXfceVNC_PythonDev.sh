@@ -17,7 +17,7 @@ function install_common_packages() {
 function install_python_dev_packages() {
     echo ">>> 3. 安装Python开发包"
     echo "正在安装必要的编译依赖..."
-    apt install -y build-essential zlib1g-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev
+    apt install -y build-essential zlib1g-dev libssl-dev libsqlite3-dev
     apt-get install -y python3 python3-dev python3-pip python3-venv || { echo "安装Python开发包失败！"; exit 1; }
 }
 
