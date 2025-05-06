@@ -46,6 +46,7 @@ docker compose -f docker-compose.yml up -d
 docker compose -f docker-compose.yml ps
 
 # 提示用户服务已启动
+echo ">>> 项目概要 <<<"
 echo "服务已启动，容器名称为: ${container_name}"
 echo "NOVNC 端口映射为: ${host_port_novnc}:6901"
 if [ -n "$host_port_vnc" ]; then
