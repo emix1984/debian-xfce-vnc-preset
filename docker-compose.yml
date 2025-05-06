@@ -1,20 +1,42 @@
-version: '3.8'
+# docker-compose.yml
+# 版本声明
+version: '3'
 
+# 定义服务
 services:
-  nv_debian:
+  # 服务名称：novnc_debian
+  novnc_debian:
+    # 使用的镜像名称
     image: consol/debian-xfce-vnc:v2.0.3
-    container_name: nv_${NAME}
+    # 容器名称
+    container_name: novnc_debian
+    # 端口映射配置
     ports:
-      - "${NV_PORT_1}:6901"  # 映射 noVNC 端口
-      - "${NV_PORT_2}:5901"  # 映射 VNC 端口（如果需要直接通过 VNC 客户端连接）
+      # 主机端口（NOVNC）映射到容器内的 6901 端口
+      # 占位符 host_port_novnc 在脚本中会被替换为用户输入的值或默认值 9601
+      - "host_port_novnc:6901"
+      # 主机端口（VNC）映射到容器内的 5901 端口
+      # 占位符 host_port_vnc 在脚本中会被替换为用户输入的值，或被移除以禁用映射
+      - "host_port_vnc:5901"
+    # 重启策略
+    # "no"：容器停止后不会自动重启
+    # "always"：容器停止后总是重启
+    # "on-failure"：仅在容器非正常退出时重启（可选参数表示重启次数）
+    # "unless-stopped"：容器停止后总是重启，除非是手动停止的
+    restart: unless-stopped
+    # 环境变量配置
     environment:
+      # 设置时区为亚洲首尔
       - TZ=Asia/Seoul
+      # 设置 VNC 分辨率为 1280x720
       - VNC_RESOLUTION=1280x720
-      - VNC_PW=1234
-      - VNC_COL_DEPTH=24  # 根据 Dockerfile 设置颜色深度
-      - VNC_VIEW_ONLY=false  # 根据 Dockerfile 设置是否只读
+      # 设置 VNC 密码（默认为 password，将在脚本中被替换为用户输入的值或默认值 1234）
+      - VNC_PW=password
+    # 卷挂载配置
+    # 将宿主机当前目录挂载到容器内的 /headless/Desktop/data 目录
     volumes:
-      - .:/headless/Desktop/data  # 挂载当前目录到容器内的 /headless/Desktop/data
-      - ./start.sh:/start.sh  # 挂载自定义启动脚本
-    user: "0"  # 根据 Dockerfile 使用非 root 用户运行
-    entrypoint: /start.sh
+      - .:/headless/Desktop/data
+    # 用户配置
+    # 以 root 用户身份运行容器（用户 ID 为 0）
+    # 注意：以 root 用户运行容器可能存在安全风险，请确保这是您期望的行为
+    user: "0"
