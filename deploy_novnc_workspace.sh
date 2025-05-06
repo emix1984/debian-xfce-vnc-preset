@@ -15,7 +15,7 @@ read -p "请输入 VNC 密码 (默认1234): " vnc_password
 vnc_password=${vnc_password:-1234}
 
 # 下载 docker-compose.yml 文件
-curl -O http://your-network-location/docker-compose.yml
+curl -O https://raw.githubusercontent.com/emix1984/debian-xfce-vnc-preset/refs/heads/main/docker-compose.yml
 
 # 检查文件是否下载成功
 if [ ! -f "docker-compose.yml" ]; then
