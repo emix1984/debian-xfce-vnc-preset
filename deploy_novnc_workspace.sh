@@ -56,5 +56,5 @@ fi
 echo "VNC 密码为: ${vnc_password}"
 
 for host_ip in $(ip addr show | grep 'inet 192.168' | awk '{print $2}' | cut -d/ -f1); do
-  echo "访问地址: $host_ip:${host_port_novnc}/?password=$vnc_password"
+  echo "访问地址: http://$host_ip:${host_port_novnc}/?password=$vnc_password"
 done
