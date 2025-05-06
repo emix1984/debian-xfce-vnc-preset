@@ -1,6 +1,17 @@
 # NoVNC-DebianXfce
 dockerhub: consol/debian-xfce-vnc:v2.0.3
 
+# 部署并启动容器项目
+## NoVNC-DebianXfce - workspace 
+
+```bash
+apt update && apt install -y curl && \
+curl -fsSL -o deploy_novnc_workspace.sh https://raw.githubusercontent.com/emix1984/debian-xfce-vnc-preset/refs/heads/main/deploy_novnc_workspace.sh && \
+chmod +x deploy_novnc_workspace.sh && \
+bash deploy_novnc_workspace.sh
+```
+
+# DebianXfce系统环境初始化
 ## NoVNC-DebianXfce used for python-dev with chromium_dirver
 ```bash
 apt update && apt install -y curl && \
@@ -17,8 +28,8 @@ chmod +x Setup_DebianXfceVNC_PythonDev.sh && \
 bash Setup_DebianXfceVNC_PythonDev.sh
 ```
 
-## 初始化Python项目
-
+# Python项目开发环境初始化
+## PythonProject_init
 ```bash
 apt update && apt install -y curl && \
 curl -fsSL -o PythonProject_init.sh https://raw.githubusercontent.com/emix1984/debian-xfce-vnc-preset/refs/heads/main/PythonProject_init.sh && \
