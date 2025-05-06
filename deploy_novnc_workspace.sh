@@ -40,10 +40,10 @@ fi
 sed -i "s/password/${vnc_password}/g" docker-compose.yml
 
 # 启动服务
-docker-compose -f docker-compose.yml up -d
+docker compose -f docker-compose.yml up -d
 
 # 验证服务是否成功启动
-docker-compose -f docker-compose.yml ps
+docker compose -f docker-compose.yml ps
 
 # 提示用户服务已启动
 echo "服务已启动，容器名称为: ${container_name}"
@@ -54,3 +54,7 @@ else
   echo "VNC 端口未映射"
 fi
 echo "VNC 密码为: ${vnc_password}"
+
+for host_ip in $(ip addr show | grep 'inet 192.168' | awk '{print $2}' | cut -d/ -f1); do
+  echo "访问地址: $host_ip:$(host_port_vnc)/?password=$vnc_password"
+done
