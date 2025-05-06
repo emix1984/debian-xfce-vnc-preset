@@ -69,8 +69,9 @@ function check_python_dev_environment() {
     fi
 
     echo "Python开发环境检查通过。"
-    echo "Python 3 的路径为：$(python3 --version)"
-    echo -e "Python 3 的路径为: \n $(ls /usr/bin/python* | grep python3)"
+    echo -e "Python 3 的版本号为: \n$(python3 --version)"
+    echo -e "Python Pip 的版本号为: \n$(pip --version)"
+    echo -e "Python 3 的路径为: \n$(ls /usr/bin/python* | grep python3)"
 }
 
 function clean_system() {
