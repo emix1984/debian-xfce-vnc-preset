@@ -11,7 +11,7 @@ function update_system_packages() {
 
 function install_common_packages() {
     echo ">>> 2. 安装终端系统常用软件包"
-    apt-get install -y git curl wget nano tree unzip net-tools screen geany gdebi || { echo "安装常用软件包失败！"; exit 1; }
+    apt-get install -y git curl wget nano tree unzip net-tools screen tmux geany gdebi || { echo "安装常用软件包失败！"; exit 1; }
 }
 
 function install_python_dev_packages() {
