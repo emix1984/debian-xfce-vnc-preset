@@ -1,6 +1,6 @@
 # Debian XFCE VNC Python 开发环境
 
-这是一个专为 Python 开发者设计的预设容器项目。基于 `consol/debian-xfce-vnc` 镜像，提供了图形化的 VNC 桌面环境，并集成了高度模块化的开发工具初始化流程。
+这是一个专为 Python 开发者设计的预设容器项目。基于 `consol/debian-xfce-vnc:v2.0.3` 镜像，提供了图形化的 VNC 桌面环境，并集成了高度模块化的开发工具初始化流程。
 
 ## 🚀 部署工作流 (Deployment Workflow)
 
