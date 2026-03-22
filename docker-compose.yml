@@ -15,6 +15,6 @@ services:
       - VNC_RESOLUTION=${RESOLUTION:-1280x720}
       - VNC_PW=${VNC_PASSWORD:-1234}
     volumes:
-      # 将当前目录挂载到桌面 data 文件夹，方便访问初始化脚本
-      - .:/headless/Desktop/data
+      # 将专用的 workspace 目录挂载到桌面，实现管理文件与源码隔离
+      - ./workspace:/headless/Desktop/workspace
     user: "0"

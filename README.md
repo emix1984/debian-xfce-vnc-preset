@@ -24,7 +24,7 @@
 进入容器桌面的终端，执行系统级增强：
 1.  **切换至工作目录**：
     ```bash
-    cd /headless/Desktop/data
+    cd /headless/Desktop/workspace
     ```
 2.  **运行交互式配置脚本**：
     ```bash
@@ -41,20 +41,22 @@ bash init_python_venv.sh
 
 ---
 
-## 📂 文件结构说明
+## 📂 文件结构说明 (Project Layout)
 
-| 文件名 | 用途说明 |
-| :--- | :--- |
-| `.env` | **唯一配置入口**。定义端口映射、容器名、分辨率及密码。 |
-| `docker-compose.yml` | 标准的容器定义文件，自动读取 `.env` 参数。 |
-| `init_debian_xfce_vnc_python.sh` | **系统级初始化模块**。补全 Debian 系统常用工具。支持交互/静默模式。 |
-| `init_python_venv.sh` | **项目级初始化模块**。具备自愈能力的 venv 管理工具，自动补齐 runtime。 |
+项目根目录采用物理隔离设计，区分了**管理配置**与**项目源码**：
+
+*   **根目录 (Root)**: 负责宿主机的容器生命周期管理。
+    *   `.env` —— 核心配置。
+    *   `docker-compose.yml` —— 编排文件。
+*   **workspace/**: 负责容器内的生产与初始化。
+    *   `init_debian_xfce_vnc_python.sh` —— **系统级初始化模块**。
+    *   `init_python_venv.sh` —— **项目级初始化模块**。
 
 ## 🛠️ 技术特性
 
-*   **按需安装 (On-demand)**：通过交互式菜单，用户可以自由选择安装轻量版 (Core) 或全量版 (Full) 开发环境，节省服务器空间。
-*   **自愈性 (Self-Healing)**：项目初始化脚本会自动检测并补全 `python3-dev`, `pip`, `venv` 等系统级基础包。
-*   **物理同步**：宿主机当前目录已挂载至容器 `/headless/Desktop/data`，实现代码实时同步。
+*   **隔离挂载 (Isolated Mounting)**：不再挂载整个项目目录。仅将宿主机的 `./workspace` 挂载至容器桌面，保护宿主机隐私的同时隔离了编排文件。
+*   **按需安装 (On-demand)**：通过交互式菜单，用户可以自由选择安装轻量版 (Core) 或全量版 (Full) 开发环境。
+*   **自愈性 (Self-Healing)**：项目初始化脚本会自动检测并补足系统级核心运行时。
 
 ---
 
@@ -72,18 +74,14 @@ bash init_python_venv.sh
 docker compose stop
 # 停止并移除容器 (清除资源)
 docker compose down
-# 重启所有服务 (应用更新)
-docker compose restart
 # 强制重新创建容器 (当修改了 .env 或 compose 文件但没生效时)
 docker compose up -d --force-recreate
-
 # 如果将来你添加了自定义 Dockerfile，请使用此命令构建并启动
 docker compose up -d --build
-
 ```
 
 ### 挂载说明：
-宿主机克隆的项目根目录会自动挂载到容器内的 `/headless/Desktop/data`。你可以直接在宿主机上使用 IDE 编辑代码，容器桌面内的文件会即时刷新。
+宿主机的 `./workspace` 子目录会自动挂载到容器内的 `/headless/Desktop/workspace`。你可以直接在宿主机的 `workspace` 文件夹中编写代码，容器内会即时同步。
 
 ---
 
