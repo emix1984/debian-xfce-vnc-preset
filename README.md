@@ -101,4 +101,21 @@ A: **不需要**。
 A: 脚本会在安装 `python3-pip` 后尝试自动升级 Pip。如果遇到网络超时，可以手动检查 `python3 -m pip install --upgrade pip`。
 
 ---
+
+## 🌍 远程调用模式 (Remote Execution Mode)
+
+如果你已经在运行一个 `debian-xfce-vnc` 容器，且不想克隆整个项目，可以直接在容器终端内远程调用 GitHub 上的最新脚本：
+
+### 1. 远程运行：系统环境初始化 (交互式)
+```bash
+curl -fsSL https://raw.githubusercontent.com/emix1984/debian-xfce-vnc-preset/refs/heads/main/workspace/init_debian_xfce_vnc_python.sh | bash
+```
+
+### 2. 远程运行：项目虚拟环境初始化 (基于当前目录)
+```bash
+curl -fsSL https://raw.githubusercontent.com/emix1984/debian-xfce-vnc-preset/refs/heads/main/workspace/init_python_venv.sh | bash
+```
+*(注意：远程调用模式下脚本将直接执行安装，建议在操作前确保已具备 root 权限。)*
+
+---
 *Powered by Emix1984*
